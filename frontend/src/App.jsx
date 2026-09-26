@@ -612,9 +612,8 @@ function App() {
       const name = encodeURIComponent(versionName.trim());
 
       const data = await api(
-        `/api/v1/prompt-versions/${name}/compare?version_a=${compareA}&version_b=${compareB}`
+     `/api/v1/prompt-versions/compare/${name}?version_a=${compareA}&version_b=${compareB}`
       );
-
       setComparison(data);
     } catch (error) {
       setComparisonError(error.message);
