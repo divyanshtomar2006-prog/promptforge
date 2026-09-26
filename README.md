@@ -1,39 +1,43 @@
 ﻿# PromptForge 🚀
 
-**An AI-powered prompt engineering and evaluation platform.**
+**An AI Prompt Engineering & Evaluation Platform built with React, FastAPI, and Google Gemini.**
 
-PromptForge helps users write, improve, test, version, and compare prompts through a web-based interface. It combines prompt optimization tools with test-case management and regression testing in one place.
+PromptForge helps users create, improve, test, version, and compare prompts through a web-based interface. It brings prompt optimization, test-case management, evaluation history, and regression testing into one place.
 
 ## ✨ Features
 
-- **Prompt Execution** — Run prompts against user-provided inputs.
-- **Prompt Debugger** — Identify potential problems and get suggestions for improving prompts.
-- **Prompt Optimizer** — Generate improved versions of prompts.
-- **Prompt Versioning** — Create and manage different versions of a prompt.
-- **Test Case Management** — Create, save, and run prompt test cases.
-- **Regression Testing** — Compare stored test results between prompt versions.
-- **Run History** — Review previous prompt executions and evaluations.
-- **Dashboard** — View available testing and evaluation statistics.
-- **Demo Mode** — Explore supported features using clearly labelled sample outputs when live AI evaluation is unavailable.
+* **Prompt Runner** — Run prompts against user-provided inputs.
+* **Prompt Debugger** — Identify potential prompt weaknesses and get improvement suggestions.
+* **Prompt Optimizer** — Generate an improved version of a prompt.
+* **Prompt Versioning** — Save and manage different prompt versions.
+* **Version Comparison** — Compare evaluation metrics between versions.
+* **Test Case Management** — Create, save, and run prompt test cases.
+* **Regression Testing** — Identify score decreases, improvements, and unchanged results between versions.
+* **Run History** — Review previous executions and evaluations.
+* **Dashboard** — View testing and evaluation statistics.
+* **Demo Mode** — Explore supported workflows using clearly labelled sample outputs.
 
-> **Note:** Demo Mode uses sample outputs, not live AI-generated evaluations. Demo test runs are not saved as real evaluation results.
+> **Demo Mode notice:** Demo Mode uses sample outputs rather than live AI-generated evaluations. Demo test runs are not saved as real evaluation results. Stored historical results may still appear in the dashboard.
 
 ## 🛠️ Tech Stack
 
 **Frontend**
-- React
-- Vite
-- Tailwind CSS
+
+* React
+* Vite
+* Tailwind CSS
 
 **Backend**
-- Python
-- FastAPI
-- SQLAlchemy
-- SQLite
+
+* Python
+* FastAPI
+* SQLAlchemy
+* SQLite
 
 **AI Integration**
-- Google Gemini API
-- Google Gen AI Python SDK
+
+* Google Gemini API
+* Google Gen AI Python SDK
 
 ## 📁 Project Structure
 
@@ -47,13 +51,13 @@ promptforge/
 │   │   ├── database.py
 │   │   ├── main.py
 │   │   └── schemas.py
-│   ├── requirements.txt
-│   └── tests/
+│   ├── tests/
+│   └── requirements.txt
 ├── frontend/
 │   ├── src/
 │   ├── package.json
 │   └── vite.config.js
-├── .env                 # Local configuration; not committed
+├── .env.example
 ├── .gitignore
 └── README.md
 ```
@@ -62,9 +66,9 @@ promptforge/
 
 ### Prerequisites
 
-- Python 3.11 or a compatible version
-- Node.js and npm
-- Git
+* Python (use the version supported by your installed dependencies)
+* Node.js and npm
+* Git
 
 ### 1. Clone the repository
 
@@ -84,23 +88,29 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+Install backend dependencies:
 
 ```powershell
 python -m pip install -r backend/requirements.txt
 ```
 
-Create a `.env` file in the project root:
+Create your local environment file from the example:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Edit `.env` and add your own Gemini API key if you want to use live AI features:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key
+GEMINI_API_KEY=your_gemini_api_key_here
 PROMPTFORGE_DEMO_MODE=true
 ```
 
-Replace the placeholder with your own Gemini API key if you plan to use live AI features. Keep this file private.
+Keep `.env` private. Never commit your actual API key.
 
-- Use `PROMPTFORGE_DEMO_MODE=true` for supported sample workflows.
-- Use `PROMPTFORGE_DEMO_MODE=false` to enable the live AI paths that require a valid API key and available API quota.
+* Set `PROMPTFORGE_DEMO_MODE=true` to use supported demo workflows.
+* Set `PROMPTFORGE_DEMO_MODE=false` to enable live AI paths, which require a valid API key and available API quota.
 
 Start the backend from the project root:
 
@@ -108,35 +118,46 @@ Start the backend from the project root:
 python -m uvicorn backend.app.main:app --reload
 ```
 
-Backend API: `http://127.0.0.1:8000`
-
-Interactive API documentation: `http://127.0.0.1:8000/docs`
+* Backend: `http://127.0.0.1:8000`
+* API documentation: `http://127.0.0.1:8000/docs`
+* Health check: `http://127.0.0.1:8000/health`
 
 ### 3. Set up the frontend
 
-Open a second terminal:
+Open a second terminal and navigate to the frontend directory:
 
 ```powershell
-cd "path\to\promptforge\frontend"
+cd frontend
 npm install
 npm run dev
 ```
 
-Use the local URL printed by Vite in your terminal.
+Open the local URL printed by Vite.
+
+## 🧪 Tests
+
+Run the backend API tests from the project root:
+
+```powershell
+python -m pytest backend/tests -v
+```
+
+The current API test suite checks the root endpoint, health endpoint, and OpenAPI documentation endpoint.
 
 ## 🔐 Security
 
-- Never commit `.env` or expose API keys.
-- Keep local databases and virtual environments out of version control.
-- Use your own API credentials for live AI functionality.
+* Never commit `.env` or expose API keys.
+* `.env.example` contains placeholders only.
+* Keep local databases, virtual environments, and generated cache files out of version control.
+* Use your own API credentials for live AI functionality.
 
 ## 🚧 Project Status
 
-PromptForge is an evolving portfolio project. Features and setup instructions may change as development continues.
+PromptForge is an evolving portfolio project. The core interface, prompt-version comparison, regression-testing display, and basic API tests have been exercised locally. Live AI availability depends on Gemini API credentials and quota. Demo results should not be interpreted as live AI evaluations.
 
 ## 👨‍💻 Author
 
 **Divyansh Tomar**
 
-- GitHub: [@divyanshtomar2006-prog](https://github.com/divyanshtomar2006-prog)
-- Project: [PromptForge](https://github.com/divyanshtomar2006-prog/promptforge)
+* GitHub: [@divyanshtomar2006-prog](https://github.com/divyanshtomar2006-prog)
+* Project: [PromptForge](https://github.com/divyanshtomar2006-prog/promptforge)
