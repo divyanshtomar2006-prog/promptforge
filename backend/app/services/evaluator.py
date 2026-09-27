@@ -10,14 +10,13 @@ from google.genai import errors
 
 load_dotenv()
 
+DEMO_MODE = (
+    os.getenv("PROMPTFORGE_DEMO_MODE", "false").lower() == "true"
+)
 api_key = os.getenv("GEMINI_API_KEY")
 
-if not api_key:
-    raise RuntimeError(
-        "GEMINI_API_KEY is missing. Check your .env file."
-    )
-
-client = genai.Client(api_key=api_key)
+# Allow startup without an API key in Demo Mode.
+client = genai.Client(api_key=api_key) if api_key else None
 
 MODEL_NAME = "gemini-3.6-flash"
 MAX_ATTEMPTS = 3
@@ -30,6 +29,27 @@ def evaluate_output(
     expected_output: str,
     actual_output: str
 ):
+    if DEMO_MODE:
+        return {
+            "score": None,
+            "passed": None,
+            "reason": (
+                "Demo Mode: this is a sample AI output. "
+                "No real evaluation was performed."
+            ),
+            "criteria": {
+                "correctness": None,
+                "relevance": None,
+                "completeness": None
+            },
+            "demo_mode": True
+        }
+
+    if client is None:
+        raise RuntimeError(
+            "GEMINI_API_KEY is missing. Configure it or enable Demo Mode."
+        )
+
     judge_prompt = f"""
 You are a strict AI test evaluator for a prompt testing platform.
 
