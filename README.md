@@ -142,7 +142,14 @@ Run the backend API tests from the project root:
 python -m pytest backend/tests -v
 ```
 
-The current API test suite checks the root endpoint, health endpoint, and OpenAPI documentation endpoint.
+The backend API test suite covers the root endpoint, health check, OpenAPI documentation, prompt runner Demo Mode, test-case runner Demo Mode, prompt optimizer Demo Mode, and prompt-version comparison when a version is missing.
+
+Run the tests from the project root:
+
+```powershell
+python -m pytest backend/tests -v
+```
+
 
 ## 🔐 Security
 
@@ -160,4 +167,5 @@ PromptForge is an evolving portfolio project. The core interface, prompt-version
 **Divyansh Tomar**
 
 * GitHub: [@divyanshtomar2006-prog](https://github.com/divyanshtomar2006-prog)
+* promptforge-tecchie.vercel.app: (https://promptforge-pied-seven.vercel.app/)
 * Project: [PromptForge](https://github.com/divyanshtomar2006-prog/promptforge)
