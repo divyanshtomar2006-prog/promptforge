@@ -19,6 +19,17 @@ PromptForge helps users create, improve, test, version, and compare prompts thro
 
 > **Demo Mode notice:** Demo Mode uses sample outputs rather than live AI-generated evaluations. Demo test runs are not saved as real evaluation results. Stored historical results may still appear in the dashboard.
 
+## 📸 Screenshots
+
+### Dashboard
+![PromptForge Dashboard](docs/screenshots/dashboard.png)
+
+### Prompt Playground
+![PromptForge Prompt Playground](docs/screenshots/playground.png)
+
+### Test Cases
+![PromptForge Test Cases](docs/screenshots/test-cases.png)
+
 ## 🛠️ Tech Stack
 
 **Frontend**
